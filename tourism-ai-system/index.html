@@ -4,12 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inkle AI Tourism Agent</title>
-    <!-- Load Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Load Lucide Icons for professional iconography -->
     <script src="https://unpkg.com/lucide@latest"></script> 
     
-    <!-- Configure Tailwind to use Inter font and modern color palette -->
     <script>
         tailwind.config = {
             theme: {
@@ -29,10 +26,8 @@
 </head>
 <body class="flex items-center justify-center p-4">
 
-    <!-- Main Application Container -->
-    <div class="w-full max-w-xl bg-white agent-card rounded-2xl p-8 transition-all duration-300">
+    <div class="w-full max-w-2xl bg-white agent-card rounded-2xl p-8 transition-all duration-300">
         
-        <!-- Header -->
         <header class="text-center mb-8 pb-4 border-b border-gray-100">
             <h1 class="text-3xl font-extrabold text-gray-800 flex items-center justify-center space-x-2">
                 <i data-lucide="globe" class="text-primary-indigo w-8 h-8"></i>
@@ -41,7 +36,6 @@
             <p class="text-gray-500 mt-2 text-base">Plan your perfect trip with multi-agent orchestration.</p>
         </header>
 
-        <!-- Input Area -->
         <div class="mb-6">
             <label for="placeInput" class="block text-sm font-semibold text-gray-700 mb-2">
                 Destination Query
@@ -57,12 +51,17 @@
             </div>
         </div>
 
-        <!-- Output Display Area -->
         <div id="outputCard" class="bg-secondary-bg p-6 rounded-xl border border-gray-200 min-h-[160px]">
-            <h2 class="text-xl font-bold text-gray-800 mb-4 flex items-center space-x-2">
-                <i data-lucide="bot" class="text-gray-600 w-6 h-6"></i>
-                <span>AI Intern Response</span>
-            </h2>
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-xl font-bold text-gray-800 flex items-center space-x-2">
+                    <i data-lucide="bot" class="text-gray-600 w-6 h-6"></i>
+                    <span>AI Intern Response</span>
+                </h2>
+                <button id="printButton" class="hidden print-btn">
+                    <i data-lucide="printer" class="w-5 h-5 text-primary-indigo"></i>
+                    Print Report
+                </button>
+            </div>
             <div id="loadingIndicator" class="hidden text-center py-6">
                 <div class="animate-spin rounded-full h-10 w-10 border-t-4 border-b-4 border-primary-indigo mx-auto mb-3"></div>
                 <p class="text-primary-indigo font-medium">Orchestrating agents and fetching data...</p>
@@ -72,7 +71,6 @@
             </div>
         </div>
 
-        <!-- Attribution and Agent Overview -->
         <div class="mt-8 pt-4 border-t border-gray-100 text-sm text-gray-500">
             <h3 class="font-bold text-gray-600 mb-3 flex items-center space-x-1">
                 <i data-lucide="gauge" class="w-4 h-4"></i>
@@ -97,7 +95,6 @@
         </div>
     </div>
 
-    <!-- JavaScript Files -->
     <script src="scripts/utils/helpers.js"></script>
     <script src="scripts/agents/geocodingAgent.js"></script>
     <script src="scripts/agents/weatherAgent.js"></script>
