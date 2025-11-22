@@ -1,0 +1,36 @@
+/* Custom styles for a professional look */
+body {
+    background: linear-gradient(135deg, #f4f6f9 0%, #e0e7f0 100%);
+    font-family: 'Inter', sans-serif;
+    min-height: 100vh;
+}
+
+.agent-card {
+    /* Deeper shadow for a floating effect */
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    transition: all 0.3s ease-in-out;
+}
+
+.agent-card:hover {
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+}
+
+/* Custom list style */
+.styled-list li::before {
+    content: "•";
+    color: #1E3A8A; /* Primary color bullet */
+    font-weight: bold;
+    display: inline-block; 
+    width: 1em; 
+    margin-left: -1em;
+}
+
+/* Loading animation */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.animate-spin {
+    animation: spin 1s linear infinite;
+}
