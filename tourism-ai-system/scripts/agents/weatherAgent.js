@@ -11,27 +11,27 @@ class WeatherAgent {
                 const daily = data.daily;
                 
                 let weatherHTML = `
-                    <div class="bg-white rounded-lg p-4 mb-4 border border-gray-200">
-                        <div class="flex items-center space-x-2 mb-3">
+                    <div class="weather-card fade-in">
+                        <div class="flex items-center space-x-2 mb-4">
                             <i data-lucide="sun" class="w-5 h-5 text-yellow-500"></i>
                             <h3 class="text-lg font-semibold text-gray-800">Current Weather</h3>
                         </div>
-                        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
-                            <div class="text-center">
-                                <div class="text-2xl font-bold text-red-600">${Math.round(current.temperature_2m)}°C</div>
-                                <div class="text-gray-600">Temperature</div>
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                            <div class="metric-card">
+                                <div class="metric-value temperature-metric">${Math.round(current.temperature_2m)}°C</div>
+                                <div class="metric-label">Temperature</div>
                             </div>
-                            <div class="text-center">
-                                <div class="text-2xl font-bold text-blue-600">${current.precipitation_probability}%</div>
-                                <div class="text-gray-600">Rain Chance</div>
+                            <div class="metric-card">
+                                <div class="metric-value rain-metric">${current.precipitation_probability}%</div>
+                                <div class="metric-label">Rain Chance</div>
                             </div>
-                            <div class="text-center">
-                                <div class="text-2xl font-bold text-green-600">${current.relative_humidity_2m}%</div>
-                                <div class="text-gray-600">Humidity</div>
+                            <div class="metric-card">
+                                <div class="metric-value humidity-metric">${current.relative_humidity_2m}%</div>
+                                <div class="metric-label">Humidity</div>
                             </div>
-                            <div class="text-center">
-                                <div class="text-2xl font-bold text-purple-600">${this.getWeatherCondition(current.weather_code)}</div>
-                                <div class="text-gray-600">Condition</div>
+                            <div class="metric-card">
+                                <div class="metric-value condition-metric">${this.getWeatherCondition(current.weather_code)}</div>
+                                <div class="metric-label">Condition</div>
                             </div>
                         </div>
                     </div>
@@ -39,12 +39,12 @@ class WeatherAgent {
 
                 if (daily.time && daily.time.length > 0) {
                     weatherHTML += `
-                        <div class="bg-white rounded-lg p-4 border border-gray-200">
-                            <div class="flex items-center space-x-2 mb-3">
+                        <div class="weather-card fade-in mt-4">
+                            <div class="flex items-center space-x-2 mb-4">
                                 <i data-lucide="calendar" class="w-5 h-5 text-blue-500"></i>
                                 <h3 class="text-lg font-semibold text-gray-800">5-Day Forecast</h3>
                             </div>
-                            <div class="weather-grid">
+                            <div class="forecast-grid">
                     `;
 
                     for (let i = 0; i < Math.min(5, daily.time.length); i++) {
@@ -54,12 +54,12 @@ class WeatherAgent {
                         
                         weatherHTML += `
                             <div class="forecast-day">
-                                <div class="font-semibold text-gray-700">${dayName}</div>
-                                <div class="text-lg my-1">${weatherIcon}</div>
-                                <div class="text-red-500 font-bold">${Math.round(daily.temperature_2m_max[i])}°</div>
-                                <div class="text-blue-500">${Math.round(daily.temperature_2m_min[i])}°</div>
-                                <div class="text-gray-600">${daily.precipitation_probability_max[i]}% rain</div>
-                                <div class="text-green-600">${daily.relative_humidity_2m_max[i]}% humid</div>
+                                <div class="font-semibold text-gray-700 mb-2">${dayName}</div>
+                                <div class="text-xl my-2">${weatherIcon}</div>
+                                <div class="text-red-500 font-bold text-sm">${Math.round(daily.temperature_2m_max[i])}°</div>
+                                <div class="text-blue-500 text-sm mb-1">${Math.round(daily.temperature_2m_min[i])}°</div>
+                                <div class="text-gray-600 text-xs">${daily.precipitation_probability_max[i]}% rain</div>
+                                <div class="text-green-600 text-xs">${daily.relative_humidity_2m_max[i]}% humid</div>
                             </div>
                         `;
                     }
@@ -69,10 +69,10 @@ class WeatherAgent {
 
                 return weatherHTML;
             }
-            return "<p class='text-red-500'>Weather data unavailable</p>";
+            return "<div class='bg-red-50 border border-red-200 rounded-lg p-4'><p class='text-red-700'>Weather data unavailable</p></div>";
         } catch (error) {
             console.error("Weather Agent failed:", error);
-            return "<p class='text-red-500'>Weather service temporarily unavailable</p>";
+            return "<div class='bg-red-50 border border-red-200 rounded-lg p-4'><p class='text-red-700'>Weather service temporarily unavailable</p></div>";
         }
     }
 

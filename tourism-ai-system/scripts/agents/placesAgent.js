@@ -52,7 +52,7 @@ class PlacesAgent {
             const listItems = placesResult.map(place => {
                 const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(place.name)}+${encodeURIComponent(placeName)}`;
                 return `
-                    <li class="list-none py-3 px-4 bg-white rounded-lg border border-gray-200 mb-2 hover:shadow-md transition duration-200">
+                    <div class="place-card fade-in">
                         <div class="flex items-center justify-between">
                             <div class="flex items-center space-x-3">
                                 <i data-lucide="map-pin" class="w-5 h-5 text-primary-indigo flex-shrink-0"></i>
@@ -62,22 +62,22 @@ class PlacesAgent {
                                 </div>
                             </div>
                             <a href="${mapsUrl}" target="_blank" 
-                               class="flex items-center space-x-1 px-3 py-1 bg-primary-indigo text-white text-sm rounded-lg hover:bg-blue-900 transition duration-200">
+                               class="map-button">
                                 <i data-lucide="navigation" class="w-4 h-4"></i>
                                 <span>View Map</span>
                             </a>
                         </div>
-                    </li>
+                    </div>
                 `;
             }).join('');
 
             return `
-                <div class="mt-6 pt-4 border-t border-gray-300">
+                <div class="report-section">
                     <div class="flex items-center space-x-2 mb-4">
                         <i data-lucide="landmark" class="w-5 h-5 text-green-600"></i>
-                        <h3 class="text-lg font-bold text-gray-800">Top Tourist Attractions</h3>
+                        <h3 class="text-lg font-semibold text-gray-800">Top Tourist Attractions</h3>
                     </div>
-                    <ul class="space-y-2">${listItems}</ul>
+                    <div class="space-y-3">${listItems}</div>
                     <div class="mt-3 text-xs text-gray-500 flex items-center space-x-1">
                         <i data-lucide="info" class="w-3 h-3"></i>
                         <span>Click "View Map" for directions and detailed information</span>
@@ -86,10 +86,10 @@ class PlacesAgent {
             `;
         } else {
             return `
-                <div class="mt-6 pt-4 border-t border-gray-300">
+                <div class="report-section">
                     <div class="flex items-center space-x-2 mb-3">
                         <i data-lucide="landmark" class="w-5 h-5 text-green-600"></i>
-                        <h3 class="text-lg font-bold text-gray-800">Tourist Attractions</h3>
+                        <h3 class="text-lg font-semibold text-gray-800">Tourist Attractions</h3>
                     </div>
                     <p class="text-gray-500 italic">No specific attractions found within 10km radius. Try exploring the city center or popular areas.</p>
                 </div>
